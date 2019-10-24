@@ -1,0 +1,1497 @@
+# source: http://localhost:4466/playground/dev
+# timestamp: Mon Sep 16 2019 02:01:49 GMT-0400 (Eastern Daylight Time)
+
+type AggregateApp {
+  count: Int!
+}
+
+type AggregateScope {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type App implements Node {
+  id: ID!
+  name: String!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  scopes(where: ScopeWhereInput, orderBy: ScopeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Scope!]
+}
+
+"""A connection to a list of items."""
+type AppConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AppEdge]!
+  aggregate: AggregateApp!
+}
+
+input AppCreateInput {
+  id: ID
+  name: String!
+  users: UserCreateManyWithoutAppsInput
+  scopes: ScopeCreateManyWithoutAppsInput
+}
+
+input AppCreateManyWithoutScopesInput {
+  create: [AppCreateWithoutScopesInput!]
+  connect: [AppWhereUniqueInput!]
+}
+
+input AppCreateManyWithoutUsersInput {
+  create: [AppCreateWithoutUsersInput!]
+  connect: [AppWhereUniqueInput!]
+}
+
+input AppCreateWithoutScopesInput {
+  id: ID
+  name: String!
+  users: UserCreateManyWithoutAppsInput
+}
+
+input AppCreateWithoutUsersInput {
+  id: ID
+  name: String!
+  scopes: ScopeCreateManyWithoutAppsInput
+}
+
+"""An edge in a connection."""
+type AppEdge {
+  """The item at the end of the edge."""
+  node: App!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AppOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type AppPreviousValues {
+  id: ID!
+  name: String!
+}
+
+input AppScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AppScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AppScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AppScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+type AppSubscriptionPayload {
+  mutation: MutationType!
+  node: App
+  updatedFields: [String!]
+  previousValues: AppPreviousValues
+}
+
+input AppSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AppSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AppSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AppSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AppWhereInput
+}
+
+input AppUpdateInput {
+  name: String
+  users: UserUpdateManyWithoutAppsInput
+  scopes: ScopeUpdateManyWithoutAppsInput
+}
+
+input AppUpdateManyDataInput {
+  name: String
+}
+
+input AppUpdateManyMutationInput {
+  name: String
+}
+
+input AppUpdateManyWithoutScopesInput {
+  create: [AppCreateWithoutScopesInput!]
+  connect: [AppWhereUniqueInput!]
+  set: [AppWhereUniqueInput!]
+  disconnect: [AppWhereUniqueInput!]
+  delete: [AppWhereUniqueInput!]
+  update: [AppUpdateWithWhereUniqueWithoutScopesInput!]
+  updateMany: [AppUpdateManyWithWhereNestedInput!]
+  deleteMany: [AppScalarWhereInput!]
+  upsert: [AppUpsertWithWhereUniqueWithoutScopesInput!]
+}
+
+input AppUpdateManyWithoutUsersInput {
+  create: [AppCreateWithoutUsersInput!]
+  connect: [AppWhereUniqueInput!]
+  set: [AppWhereUniqueInput!]
+  disconnect: [AppWhereUniqueInput!]
+  delete: [AppWhereUniqueInput!]
+  update: [AppUpdateWithWhereUniqueWithoutUsersInput!]
+  updateMany: [AppUpdateManyWithWhereNestedInput!]
+  deleteMany: [AppScalarWhereInput!]
+  upsert: [AppUpsertWithWhereUniqueWithoutUsersInput!]
+}
+
+input AppUpdateManyWithWhereNestedInput {
+  where: AppScalarWhereInput!
+  data: AppUpdateManyDataInput!
+}
+
+input AppUpdateWithoutScopesDataInput {
+  name: String
+  users: UserUpdateManyWithoutAppsInput
+}
+
+input AppUpdateWithoutUsersDataInput {
+  name: String
+  scopes: ScopeUpdateManyWithoutAppsInput
+}
+
+input AppUpdateWithWhereUniqueWithoutScopesInput {
+  where: AppWhereUniqueInput!
+  data: AppUpdateWithoutScopesDataInput!
+}
+
+input AppUpdateWithWhereUniqueWithoutUsersInput {
+  where: AppWhereUniqueInput!
+  data: AppUpdateWithoutUsersDataInput!
+}
+
+input AppUpsertWithWhereUniqueWithoutScopesInput {
+  where: AppWhereUniqueInput!
+  update: AppUpdateWithoutScopesDataInput!
+  create: AppCreateWithoutScopesInput!
+}
+
+input AppUpsertWithWhereUniqueWithoutUsersInput {
+  where: AppWhereUniqueInput!
+  update: AppUpdateWithoutUsersDataInput!
+  create: AppCreateWithoutUsersInput!
+}
+
+input AppWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AppWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AppWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AppWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  users_every: UserWhereInput
+  users_some: UserWhereInput
+  users_none: UserWhereInput
+  scopes_every: ScopeWhereInput
+  scopes_some: ScopeWhereInput
+  scopes_none: ScopeWhereInput
+}
+
+input AppWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+"""Raw JSON value"""
+scalar Json
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  createApp(data: AppCreateInput!): App!
+  createScope(data: ScopeCreateInput!): Scope!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateApp(data: AppUpdateInput!, where: AppWhereUniqueInput!): App
+  updateScope(data: ScopeUpdateInput!, where: ScopeWhereUniqueInput!): Scope
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteApp(where: AppWhereUniqueInput!): App
+  deleteScope(where: ScopeWhereUniqueInput!): Scope
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertApp(where: AppWhereUniqueInput!, create: AppCreateInput!, update: AppUpdateInput!): App!
+  upsertScope(where: ScopeWhereUniqueInput!, create: ScopeCreateInput!, update: ScopeUpdateInput!): Scope!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyApps(data: AppUpdateManyMutationInput!, where: AppWhereInput): BatchPayload!
+  updateManyScopes(data: ScopeUpdateManyMutationInput!, where: ScopeWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyApps(where: AppWhereInput): BatchPayload!
+  deleteManyScopes(where: ScopeWhereInput): BatchPayload!
+  executeRaw(database: PrismaDatabase, query: String!): Json!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+enum PrismaDatabase {
+  default
+}
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  apps(where: AppWhereInput, orderBy: AppOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [App]!
+  scopes(where: ScopeWhereInput, orderBy: ScopeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Scope]!
+  user(where: UserWhereUniqueInput!): User
+  app(where: AppWhereUniqueInput!): App
+  scope(where: ScopeWhereUniqueInput!): Scope
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  appsConnection(where: AppWhereInput, orderBy: AppOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AppConnection!
+  scopesConnection(where: ScopeWhereInput, orderBy: ScopeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ScopeConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Scope implements Node {
+  id: ID!
+  name: String!
+  apps(where: AppWhereInput, orderBy: AppOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [App!]
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+}
+
+"""A connection to a list of items."""
+type ScopeConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ScopeEdge]!
+  aggregate: AggregateScope!
+}
+
+input ScopeCreateInput {
+  id: ID
+  name: String!
+  apps: AppCreateManyWithoutScopesInput
+  users: UserCreateManyWithoutScopesInput
+}
+
+input ScopeCreateManyWithoutAppsInput {
+  create: [ScopeCreateWithoutAppsInput!]
+  connect: [ScopeWhereUniqueInput!]
+}
+
+input ScopeCreateManyWithoutUsersInput {
+  create: [ScopeCreateWithoutUsersInput!]
+  connect: [ScopeWhereUniqueInput!]
+}
+
+input ScopeCreateWithoutAppsInput {
+  id: ID
+  name: String!
+  users: UserCreateManyWithoutScopesInput
+}
+
+input ScopeCreateWithoutUsersInput {
+  id: ID
+  name: String!
+  apps: AppCreateManyWithoutScopesInput
+}
+
+"""An edge in a connection."""
+type ScopeEdge {
+  """The item at the end of the edge."""
+  node: Scope!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ScopeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type ScopePreviousValues {
+  id: ID!
+  name: String!
+}
+
+input ScopeScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ScopeScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ScopeScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ScopeScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+type ScopeSubscriptionPayload {
+  mutation: MutationType!
+  node: Scope
+  updatedFields: [String!]
+  previousValues: ScopePreviousValues
+}
+
+input ScopeSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ScopeSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ScopeSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ScopeSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ScopeWhereInput
+}
+
+input ScopeUpdateInput {
+  name: String
+  apps: AppUpdateManyWithoutScopesInput
+  users: UserUpdateManyWithoutScopesInput
+}
+
+input ScopeUpdateManyDataInput {
+  name: String
+}
+
+input ScopeUpdateManyMutationInput {
+  name: String
+}
+
+input ScopeUpdateManyWithoutAppsInput {
+  create: [ScopeCreateWithoutAppsInput!]
+  connect: [ScopeWhereUniqueInput!]
+  set: [ScopeWhereUniqueInput!]
+  disconnect: [ScopeWhereUniqueInput!]
+  delete: [ScopeWhereUniqueInput!]
+  update: [ScopeUpdateWithWhereUniqueWithoutAppsInput!]
+  updateMany: [ScopeUpdateManyWithWhereNestedInput!]
+  deleteMany: [ScopeScalarWhereInput!]
+  upsert: [ScopeUpsertWithWhereUniqueWithoutAppsInput!]
+}
+
+input ScopeUpdateManyWithoutUsersInput {
+  create: [ScopeCreateWithoutUsersInput!]
+  connect: [ScopeWhereUniqueInput!]
+  set: [ScopeWhereUniqueInput!]
+  disconnect: [ScopeWhereUniqueInput!]
+  delete: [ScopeWhereUniqueInput!]
+  update: [ScopeUpdateWithWhereUniqueWithoutUsersInput!]
+  updateMany: [ScopeUpdateManyWithWhereNestedInput!]
+  deleteMany: [ScopeScalarWhereInput!]
+  upsert: [ScopeUpsertWithWhereUniqueWithoutUsersInput!]
+}
+
+input ScopeUpdateManyWithWhereNestedInput {
+  where: ScopeScalarWhereInput!
+  data: ScopeUpdateManyDataInput!
+}
+
+input ScopeUpdateWithoutAppsDataInput {
+  name: String
+  users: UserUpdateManyWithoutScopesInput
+}
+
+input ScopeUpdateWithoutUsersDataInput {
+  name: String
+  apps: AppUpdateManyWithoutScopesInput
+}
+
+input ScopeUpdateWithWhereUniqueWithoutAppsInput {
+  where: ScopeWhereUniqueInput!
+  data: ScopeUpdateWithoutAppsDataInput!
+}
+
+input ScopeUpdateWithWhereUniqueWithoutUsersInput {
+  where: ScopeWhereUniqueInput!
+  data: ScopeUpdateWithoutUsersDataInput!
+}
+
+input ScopeUpsertWithWhereUniqueWithoutAppsInput {
+  where: ScopeWhereUniqueInput!
+  update: ScopeUpdateWithoutAppsDataInput!
+  create: ScopeCreateWithoutAppsInput!
+}
+
+input ScopeUpsertWithWhereUniqueWithoutUsersInput {
+  where: ScopeWhereUniqueInput!
+  update: ScopeUpdateWithoutUsersDataInput!
+  create: ScopeCreateWithoutUsersInput!
+}
+
+input ScopeWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ScopeWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ScopeWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ScopeWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  apps_every: AppWhereInput
+  apps_some: AppWhereInput
+  apps_none: AppWhereInput
+  users_every: UserWhereInput
+  users_some: UserWhereInput
+  users_none: UserWhereInput
+}
+
+input ScopeWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  app(where: AppSubscriptionWhereInput): AppSubscriptionPayload
+  scope(where: ScopeSubscriptionWhereInput): ScopeSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String
+  apps(where: AppWhereInput, orderBy: AppOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [App!]
+  scopes(where: ScopeWhereInput, orderBy: ScopeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Scope!]
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String
+  apps: AppCreateManyWithoutUsersInput
+  scopes: ScopeCreateManyWithoutUsersInput
+}
+
+input UserCreateManyWithoutAppsInput {
+  create: [UserCreateWithoutAppsInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateManyWithoutScopesInput {
+  create: [UserCreateWithoutScopesInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateWithoutAppsInput {
+  id: ID
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String
+  scopes: ScopeCreateManyWithoutUsersInput
+}
+
+input UserCreateWithoutScopesInput {
+  id: ID
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String
+  apps: AppCreateManyWithoutUsersInput
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  first_name_ASC
+  first_name_DESC
+  last_name_ASC
+  last_name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String
+}
+
+input UserScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  first_name: String
+
+  """All values that are not equal to given value."""
+  first_name_not: String
+
+  """All values that are contained in given list."""
+  first_name_in: [String!]
+
+  """All values that are not contained in given list."""
+  first_name_not_in: [String!]
+
+  """All values less than the given value."""
+  first_name_lt: String
+
+  """All values less than or equal the given value."""
+  first_name_lte: String
+
+  """All values greater than the given value."""
+  first_name_gt: String
+
+  """All values greater than or equal the given value."""
+  first_name_gte: String
+
+  """All values containing the given string."""
+  first_name_contains: String
+
+  """All values not containing the given string."""
+  first_name_not_contains: String
+
+  """All values starting with the given string."""
+  first_name_starts_with: String
+
+  """All values not starting with the given string."""
+  first_name_not_starts_with: String
+
+  """All values ending with the given string."""
+  first_name_ends_with: String
+
+  """All values not ending with the given string."""
+  first_name_not_ends_with: String
+  last_name: String
+
+  """All values that are not equal to given value."""
+  last_name_not: String
+
+  """All values that are contained in given list."""
+  last_name_in: [String!]
+
+  """All values that are not contained in given list."""
+  last_name_not_in: [String!]
+
+  """All values less than the given value."""
+  last_name_lt: String
+
+  """All values less than or equal the given value."""
+  last_name_lte: String
+
+  """All values greater than the given value."""
+  last_name_gt: String
+
+  """All values greater than or equal the given value."""
+  last_name_gte: String
+
+  """All values containing the given string."""
+  last_name_contains: String
+
+  """All values not containing the given string."""
+  last_name_not_contains: String
+
+  """All values starting with the given string."""
+  last_name_starts_with: String
+
+  """All values not starting with the given string."""
+  last_name_not_starts_with: String
+
+  """All values ending with the given string."""
+  last_name_ends_with: String
+
+  """All values not ending with the given string."""
+  last_name_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateInput {
+  first_name: String
+  last_name: String
+  email: String
+  password: String
+  apps: AppUpdateManyWithoutUsersInput
+  scopes: ScopeUpdateManyWithoutUsersInput
+}
+
+input UserUpdateManyDataInput {
+  first_name: String
+  last_name: String
+  email: String
+  password: String
+}
+
+input UserUpdateManyMutationInput {
+  first_name: String
+  last_name: String
+  email: String
+  password: String
+}
+
+input UserUpdateManyWithoutAppsInput {
+  create: [UserCreateWithoutAppsInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutAppsInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  deleteMany: [UserScalarWhereInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutAppsInput!]
+}
+
+input UserUpdateManyWithoutScopesInput {
+  create: [UserCreateWithoutScopesInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutScopesInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  deleteMany: [UserScalarWhereInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutScopesInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
+}
+
+input UserUpdateWithoutAppsDataInput {
+  first_name: String
+  last_name: String
+  email: String
+  password: String
+  scopes: ScopeUpdateManyWithoutUsersInput
+}
+
+input UserUpdateWithoutScopesDataInput {
+  first_name: String
+  last_name: String
+  email: String
+  password: String
+  apps: AppUpdateManyWithoutUsersInput
+}
+
+input UserUpdateWithWhereUniqueWithoutAppsInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutAppsDataInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutScopesInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutScopesDataInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutAppsInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutAppsDataInput!
+  create: UserCreateWithoutAppsInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutScopesInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutScopesDataInput!
+  create: UserCreateWithoutScopesInput!
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  first_name: String
+
+  """All values that are not equal to given value."""
+  first_name_not: String
+
+  """All values that are contained in given list."""
+  first_name_in: [String!]
+
+  """All values that are not contained in given list."""
+  first_name_not_in: [String!]
+
+  """All values less than the given value."""
+  first_name_lt: String
+
+  """All values less than or equal the given value."""
+  first_name_lte: String
+
+  """All values greater than the given value."""
+  first_name_gt: String
+
+  """All values greater than or equal the given value."""
+  first_name_gte: String
+
+  """All values containing the given string."""
+  first_name_contains: String
+
+  """All values not containing the given string."""
+  first_name_not_contains: String
+
+  """All values starting with the given string."""
+  first_name_starts_with: String
+
+  """All values not starting with the given string."""
+  first_name_not_starts_with: String
+
+  """All values ending with the given string."""
+  first_name_ends_with: String
+
+  """All values not ending with the given string."""
+  first_name_not_ends_with: String
+  last_name: String
+
+  """All values that are not equal to given value."""
+  last_name_not: String
+
+  """All values that are contained in given list."""
+  last_name_in: [String!]
+
+  """All values that are not contained in given list."""
+  last_name_not_in: [String!]
+
+  """All values less than the given value."""
+  last_name_lt: String
+
+  """All values less than or equal the given value."""
+  last_name_lte: String
+
+  """All values greater than the given value."""
+  last_name_gt: String
+
+  """All values greater than or equal the given value."""
+  last_name_gte: String
+
+  """All values containing the given string."""
+  last_name_contains: String
+
+  """All values not containing the given string."""
+  last_name_not_contains: String
+
+  """All values starting with the given string."""
+  last_name_starts_with: String
+
+  """All values not starting with the given string."""
+  last_name_not_starts_with: String
+
+  """All values ending with the given string."""
+  last_name_ends_with: String
+
+  """All values not ending with the given string."""
+  last_name_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  apps_every: AppWhereInput
+  apps_some: AppWhereInput
+  apps_none: AppWhereInput
+  scopes_every: ScopeWhereInput
+  scopes_some: ScopeWhereInput
+  scopes_none: ScopeWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}

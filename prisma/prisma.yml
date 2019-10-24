@@ -1,0 +1,3 @@
+endpoint: http://localhost:4466/playground/dev
+datamodel: datamodel.graphql
+secret: thisismysupersecrecttext

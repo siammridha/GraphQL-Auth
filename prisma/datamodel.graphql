@@ -1,0 +1,21 @@
+type User{
+    id: ID! @id
+    first_name: String!
+    last_name: String!
+    email: String! @unique
+    password: String
+    apps: [App!]! @relation(name: "UserToApp", onDelete:CASCADE)
+}
+
+type App{
+    id: ID! @id
+    name: String! @unique
+    users: [User!] @relation(name: "UserToApp", onDelete: SET_NULL)
+    scopes: [Scope!]! @relation(name: "AppToScope", onDelete: SET_NULL)
+}
+
+type Scope{
+    id: ID! @id
+    name: String! @unique
+    apps: [App!] @relation(name: "AppToScope", onDelete: CASCADE )
+}

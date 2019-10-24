@@ -1,0 +1,36 @@
+{
+  "name": "graphql-auth-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "DEBUG=app:* nodemon src/index.js --ext js,graphql --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "get-schema": "graphql get-schema -p prisma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masudalamsiam/graphql-auth-boilerplate.git"
+  },
+  "author": "Siam Mridha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/masudalamsiam/graphql-auth-boilerplate/issues"
+  },
+  "homepage": "https://github.com/masudalamsiam/graphql-auth-boilerplate#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.2.2",
+    "crypto-js": "^3.1.9-1",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "prisma-binding": "^2.3.16",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "debug": "^4.1.1",
+    "nodemon": "^1.19.2"
+  }
+}

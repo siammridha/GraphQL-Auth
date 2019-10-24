@@ -1,0 +1,89 @@
+type User{
+    id: ID!
+    first_name: String!
+    last_name: String!
+    email: String!
+    apps: [App!]!
+}
+
+type InviteToken{
+    invite_token: String!
+}
+
+type App{
+    id: ID!
+    name: String!
+    # users: [User!]
+    scopes:[Scope!]!
+}
+
+type Scope{
+    id: ID!
+    name: String!
+    apps:[App!]!
+}
+
+type Query {
+    user(id: ID!): User!
+    users:[User!]
+    
+    app(id: ID!): App!
+    apps: [App!]!
+
+    scope(id: ID!): Scope!
+    scopes: [Scope!]!
+}
+
+type Mutation {
+    creatUserInvite(data: CreateUserInviteInput!): InviteToken!
+    createUserSignUp(data: CreateUserSignUpInput!): User!
+    userLogin(data: CreateUserLoginInput!): User!
+    userLogout: Boolean
+
+    createApp(data: CreateAppInput!): App!
+    createManyApp(dataList: [CreateAppInput!]!): [App!]!
+    updateApp(data: UpdateAppInput!,where: UniqueIdInput!): App!
+    deleteApp(where: UniqueIdInput!): App!
+
+    createScope(data: CreateScopeInput!): Scope!
+    updateScope(data: UpdateScopeInput!,where: UniqueIdInput!): Scope!
+    deleteScope(where: UniqueIdInput!): Scope!
+}
+
+input CreateUserLoginInput{
+    email: String!
+    password: String!
+}
+
+input CreateUserSignUpInput{
+    password: String!
+}
+
+input CreateUserInviteInput{
+    first_name: String!
+    last_name: String!
+    email: String!
+    apps: [UniqueIdInput!]!
+}
+
+input CreateAppInput{
+    name: String!
+    scopes: [UniqueIdInput!]!
+}
+
+input UpdateAppInput{
+    name: String
+    scopes: [UniqueIdInput]!
+}
+
+input CreateScopeInput{
+    name: String!
+}
+
+input UpdateScopeInput{
+    name: String!
+}
+
+input UniqueIdInput{
+    id: ID!
+}
